@@ -1,5 +1,5 @@
 # By Pytel, Guly
-from prompt_toolkit import prompt
+import prompt
 """
 Funkce hrace pro hru 2048.
 """
@@ -23,6 +23,9 @@ class Player:
 
 """
 END
+"""
+
+"""
 from prompt_toolkit import prompt
  
 cmd = prompt("Command: ")
