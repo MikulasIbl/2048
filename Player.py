@@ -1,5 +1,7 @@
 # By Pytel, Guly
-import prompt
+
+from prompt_toolkit import prompt
+
 """
 Funkce hrace pro hru 2048.
 """
