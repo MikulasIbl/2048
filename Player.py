@@ -1,7 +1,5 @@
 # By Pytel, Guly
-
-from prompt_toolkit import prompt
-
+import curses
 """
 Funkce hrace pro hru 2048.
 """
@@ -15,7 +13,7 @@ class Player:
 	
 	def Move (self):
 		while True != False:
-			key = prompt()
+			key = curses.initscr()
 			if DEBUG:
 				print(key)
 			if key in MOVE:
@@ -25,11 +23,39 @@ class Player:
 
 """
 END
-"""
 
-"""
-from prompt_toolkit import prompt
- 
-cmd = prompt("Command: ")
-print("Entered: '{cmd}'".format(cmd=cmd))
+import sys
+import termios
+import tty
+fd = sys.stdin.fileno()
+old = termios.tcgetattr(fd)
+tty.setcbreak(fd)
+try:
+	print 'Stiskni q pro konec'
+	ch = sys.stdin.read(1)
+	while ch <> 'q':
+		print 'To nebylo ono'
+		ch = sys.stdin.read(1)
+finally:
+	termios.tcsetattr(fd, termios.TCSAFLUSH, old)
+
+	OR
+
+	import curses
+stdscr = curses.initscr()
+try:
+	stdscr.scrollok(True)
+	curses.noecho()
+	curses.cbreak()
+
+	stdscr.addstr('Stiskni q pro konec\n')
+	ch = stdscr.getch()
+	while ch <> ord('q'):
+		stdscr.addstr('To nebylo ono\n')
+		ch = stdscr.getch()
+	
+finally:
+	curses.nocbreak()
+	curses.echo()
+	curses.endwin()
 """
